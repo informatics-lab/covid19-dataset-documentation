@@ -9,7 +9,8 @@ from collections import namedtuple
 import sys
 
 
-DRY_RUN = False if (len(sys.argv) >= 2 and sys.argv[1] == '--deploy') else True
+print(f"### Args: {sys.argv}")
+DRY_RUN = False if (len(sys.argv) >= 2 and sys.argv[1].strip() == '--deploy') else True
 
 print("### DRY RUN ###" if DRY_RUN else "### DEPLOY ###")
 
