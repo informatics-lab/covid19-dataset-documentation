@@ -12,6 +12,15 @@ This data is made available under [Open Government License](http://www.nationala
 
 Global and high resolution UK [numerical weather model output](https://www.metoffice.gov.uk/research/approach/modelling-systems/unified-model/weather-forecasting) from the [UK Met Office](https://www.metoffice.gov.uk/). Data is from the very early time steps of the model following data assimilation, as such this data approximates a whole earth observation dataset.
 
+The following variables are available:
+
+- `t1o5m` = Air temperature at 1.5m in $K$
+- `sh` = Specific humidity at 1.5m in $kg/kg$ (kg of water vapor in kg of air)
+- `sw` = Short wave radiation in $W m^{-2}$ (surrogate for sunshine)
+- `precip` = Precipitation flux in $kg m^{-2} s^{-1}$ (multiply by 3600 to get $mm / hr$ )
+- `rain` = Rain flux in $kg m^{-2} s^{-1}$ (multiply by 3600 to get $mm / hr$)
+- `pmsl` = Air pressure at mean sea level in $Pa$
+
 This data is made available as NetCDF files.
 
 Global and UK model data updated is available for 01 Jan - 12 Apr 2020 (inclusive).
