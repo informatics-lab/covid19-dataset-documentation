@@ -69,18 +69,18 @@ There is a range of libraries in a range of languages for working with Azure Blo
 
 There are lots of files, so we suggest installing `azcopy` command line tool, which you can download [here](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10#download-azcopy). This lets you download [whole directories](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs?toc=/azure/storage/blobs/toc.json#download-the-contents-of-a-directory) or multiple files [using wildcards](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs?toc=/azure/storage/blobs/toc.json#use-wildcard-characters-1) to your computer of choice. <br>
 For example: <br>
-1. `azcopy cp https://metdatasa.blob.core.windows.net/covid19-response/latest/mo_data_global_daily/precip_max/precip_day_max_20200101.nc my_directory/`<br>
-will download the file `precip_day_max_20200101.nc` to `my_directory/`.
-2. `azcopy cp https://metdatasa.blob.core.windows.net/covid19-response/latest/mo_data_global_daily/sh_mean/* my_directory/`<br>
-will download the contents of `/mo_data_global_daily/sh_mean/` to `my_directory/`.
-3. `azcopy cp https://metdatasa.blob.core.windows.net/covid19-response/latest/regional_subset_data/us_data/ --include-pattern us_55*.csv`<br>
+1. `azcopy cp https://metdatasa.blob.core.windows.net/covid19-response/metoffice_global_daily/precip_max/global_daily_precip_max_20200101.nc .`<br>
+will download the file `global_daily_precip_max_20200101.nc` to the current directory.
+2. `azcopy cp 'https://metdatasa.blob.core.windows.net/covid19-response/metoffice_ukv_daily/snow_mean/*' ukv_daily_snow_mean/`<br>
+will download the contents of `/metoffice_ukv_daily/snow_mean/` to `ukv_daily_snow_mean/`.
+3. `azcopy cp  --recursive  --include-pattern 'us_55*.csv' https://metdatasa.blob.core.windows.net/covid19-response/regional_subset_data/us_data/ .`<br>
 will download all the US state county averaged meteorology data which match the pattern `us_55*.csv`.
 
 ## How the data is organised
 
-- `mo_data_global_daily/`<br>
+- `metoffice_data_global_daily/`<br>
 Contains the Met Office daily global gridded data files.<br>
-Each file has a descriptive name* as `{variable}_{statistic}_{YYYYMMDD}.nc`.
+Each file has a descriptive name* as `global_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
   - `.../t1o5m_mean/` = Daily mean air temperature files
   - `.../t1o5m_max/` = Daily max air temperature files
   - `.../t1o5m_min/` = Daily min air temperature files
@@ -92,9 +92,9 @@ Each file has a descriptive name* as `{variable}_{statistic}_{YYYYMMDD}.nc`.
   - `.../precip_mean/` = Daily mean precipitation flux files
   - `.../precip_max/` = Daily max precipitation flux files
 
-- `mo_data_global_hourly/`<br>
+- `metoffice_data_global_hourly/`<br>
 Contains the Met Office hourly global gridded data files.<br>
-Each file has a descriptive name* as `{variable}_global_{YYYYMMDD}.nc`.
+Each file has a descriptive name* as `global_hourly_{variable}_global_{YYYYMMDD}.nc`.
   - `.../t1o5m/` = Hourly air temperature files
   - `.../sh/` = Hourly Specific Humidity files
   - `.../sw/` = Hourly for short wave radiation files
@@ -102,9 +102,9 @@ Each file has a descriptive name* as `{variable}_global_{YYYYMMDD}.nc`.
   - `.../precip3hr/` = Three hourly precipitation flux files
   - `.../pmsl/` = Hourly air pressure at mean sea level files
 
-- `mo_data_ukv_daily/`<br>
+- `metoffice_data_ukv_daily/`<br>
 Contains the Met Office daily UKV gridded data files.<br>
-Each file has a descriptive name* as `{variable}_ukv_{YYYYMMDD}.nc`.
+Each file has a descriptive name* as `ukv_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
   - `.../t1o5m_mean/` = Daily mean air temperature files
   - `.../t1o5m_max/` = Daily max air temperature files
   - `.../t1o5m_min/` = Daily min air temperature files
@@ -114,9 +114,9 @@ Each file has a descriptive name* as `{variable}_ukv_{YYYYMMDD}.nc`.
   - `.../sw_mean/` = Daily mean for short wave radiation files
   - `.../sw_max/` = Daily max for short wave radiation files
 
-- `mo_data_ukv_hourly/`<br>
+- `metoffice_data_ukv_hourly/`<br>
 Contains the Met Office hourly UKV gridded data files.<br>
-Each file has a descriptive name* as `{variable}_ukv_{YYYYMMDD}.nc`.
+Each file has a descriptive name* as `ukv_hourly_{variable}_{YYYYMMDD}.nc`.
   - `.../t1o5m_ukv/` = Hourly air temperature files
   - `.../sh_ukv/` = Hourly Specific Humidity files
   - `.../sw_ukv/` = Hourly for short wave radiation files
