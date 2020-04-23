@@ -78,7 +78,7 @@ will download all the US state county averaged meteorology data which match the 
 
 ## How the data is organised
 
-- `metoffice_data_global_daily/`<br>
+- `metoffice_global_daily/`<br>
 Contains the Met Office daily global gridded data files.<br>
 Each file has a descriptive name* as `global_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
   - `.../t1o5m_mean/` = Daily mean air temperature files
@@ -92,7 +92,7 @@ Each file has a descriptive name* as `global_daily_{variable}_{statistic}_{YYYYM
   - `.../precip_mean/` = Daily mean precipitation flux files
   - `.../precip_max/` = Daily max precipitation flux files
 
-- `metoffice_data_global_hourly/`<br>
+- `metoffice_global_hourly/`<br>
 Contains the Met Office hourly global gridded data files.<br>
 Each file has a descriptive name* as `global_hourly_{variable}_global_{YYYYMMDD}.nc`.
   - `.../t1o5m/` = Hourly air temperature files
@@ -102,7 +102,7 @@ Each file has a descriptive name* as `global_hourly_{variable}_global_{YYYYMMDD}
   - `.../precip3hr/` = Three hourly precipitation flux files
   - `.../pmsl/` = Hourly air pressure at mean sea level files
 
-- `metoffice_data_ukv_daily/`<br>
+- `metoffice_ukv_daily/`<br>
 Contains the Met Office daily UKV gridded data files.<br>
 Each file has a descriptive name* as `ukv_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
   - `.../t1o5m_mean/` = Daily mean air temperature files
@@ -114,7 +114,7 @@ Each file has a descriptive name* as `ukv_daily_{variable}_{statistic}_{YYYYMMDD
   - `.../sw_mean/` = Daily mean for short wave radiation files
   - `.../sw_max/` = Daily max for short wave radiation files
 
-- `metoffice_data_ukv_hourly/`<br>
+- `metoffice_ukv_hourly/`<br>
 Contains the Met Office hourly UKV gridded data files.<br>
 Each file has a descriptive name* as `ukv_hourly_{variable}_{YYYYMMDD}.nc`.
   - `.../t1o5m_ukv/` = Hourly air temperature files
