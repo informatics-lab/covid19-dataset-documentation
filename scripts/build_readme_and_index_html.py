@@ -148,9 +148,7 @@ if(DRY_RUN):
         print(f"""
 
 ---------------------------------------------------
-{blob_entry.path} {blob_entry.mime}:
-        
-{blob_entry.content if (len(blob_entry.content) <= 300) else blob_entry.content[0:300]+"..."}
+{blob_entry.path} {blob_entry.mime}"}
 """)
 else:
     for blob_entry in blobs:
