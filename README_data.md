@@ -20,6 +20,8 @@ The following variables are available:
 - `precip` = Precipitation flux in $kg m^{-2} s^{-1}$ (multiply by 3600 to get $mm / hr$ )
 - `rain` = Rain flux in $kg m^{-2} s^{-1}$ (multiply by 3600 to get $mm / hr$)
 - `pmsl` = Air pressure at mean sea level in $Pa$
+- `windspeed` = Wind speed in $m s^{-1}$
+- `windgust` = Wind gust in $m s^{-1}$
 
 This data is made available as NetCDF files.
 
@@ -82,47 +84,23 @@ will download all the US state county averaged meteorology data which match the 
 
 - `metoffice_global_daily/`<br>
 Contains the Met Office daily global gridded data files.<br>
-Each file has a descriptive name* as `global_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
-  - `.../t1o5m_mean/` = Daily mean air temperature files
-  - `.../t1o5m_max/` = Daily max air temperature files
-  - `.../t1o5m_min/` = Daily min air temperature files
-  - `.../sh_mean/` = Daily mean Specific Humidity files
-  - `.../sh_max/` = Daily max Specific Humidity files
-  - `.../sh_min/` = Daily min Specific Humidity files
-  - `.../sw_mean/` = Daily mean for short wave radiation files
-  - `.../sw_max/` = Daily max for short wave radiation files
-  - `.../precip_mean/` = Daily mean precipitation flux files
-  - `.../precip_max/` = Daily max precipitation flux files
+There is a 'directory' for each variable.<br>
+Each file in these directories has a descriptive name* as `global_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
 
 - `metoffice_global_hourly/`<br>
 Contains the Met Office hourly global gridded data files.<br>
-Each file has a descriptive name* as `global_hourly_{variable}_global_{YYYYMMDD}.nc`.
-  - `.../t1o5m/` = Hourly air temperature files
-  - `.../sh/` = Hourly Specific Humidity files
-  - `.../sw/` = Hourly for short wave radiation files
-  - `.../precip/` = Hourly precipitation flux files
-  - `.../precip3hr/` = Three hourly precipitation flux files
-  - `.../pmsl/` = Hourly air pressure at mean sea level files
+There is a 'directory' for each variable.<br>
+Each file in these directories has a descriptive name* as `global_hourly_{variable}_global_{YYYYMMDD}.nc`.
 
 - `metoffice_ukv_daily/`<br>
 Contains the Met Office daily UKV gridded data files.<br>
-Each file has a descriptive name* as `ukv_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
-  - `.../t1o5m_mean/` = Daily mean air temperature files
-  - `.../t1o5m_max/` = Daily max air temperature files
-  - `.../t1o5m_min/` = Daily min air temperature files
-  - `.../sh_mean/` = Daily mean Specific Humidity files
-  - `.../sh_max/` = Daily max Specific Humidity files
-  - `.../sh_min/` = Daily min Specific Humidity files
-  - `.../sw_mean/` = Daily mean for short wave radiation files
-  - `.../sw_max/` = Daily max for short wave radiation files
+There is a 'directory' for each variable.<br>
+Each file in these directories has a descriptive name* as `ukv_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
 
 - `metoffice_ukv_hourly/`<br>
 Contains the Met Office hourly UKV gridded data files.<br>
-Each file has a descriptive name* as `ukv_hourly_{variable}_{YYYYMMDD}.nc`.
-  - `.../t1o5m_ukv/` = Hourly air temperature files
-  - `.../sh_ukv/` = Hourly Specific Humidity files
-  - `.../sw_ukv/` = Hourly for short wave radiation files
-  - `.../pmsl_ukv/` = Hourly air pressure at mean sea level files
+There is a 'directory' for each variable.<br>
+Each file in these directories has a descriptive name* as `ukv_hourly_{variable}_{YYYYMMDD}.nc`.
 
 - `regional_subset_data/`<br>
 Contains processed regional daily values for UK and USA as `.csv` files.<br>
