@@ -148,7 +148,7 @@ if(DRY_RUN):
         print(f"""
 
 ---------------------------------------------------
-{blob_entry.path} {blob_entry.mime}"}
+{blob_entry.path} {blob_entry.mime}
 """)
 else:
     for blob_entry in blobs:
