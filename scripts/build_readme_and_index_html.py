@@ -131,10 +131,15 @@ README_HTML_PATH = README_MD_PATH.rsplit('.')[0] + '.html'
 
 BlobEntry = namedtuple("Blob", ['path', 'content', 'mime'])
 
+TECHNICAL_DOCS_PATH = 'README_data_processing.pdf'
+with open(TECHNICAL_DOCS_PATH, 'rb') as fp:
+    technical_docs_data = fp.read()
+
 blobs = [
     BlobEntry(README_HTML_PATH, readme_html, 'text/html'),
     BlobEntry(INDEX_PATH, index_html, 'text/html'),
-    BlobEntry(README_MD_PATH, markdown_readme, 'text/markdown')
+    BlobEntry(README_MD_PATH, markdown_readme, 'text/markdown'),
+    BlobEntry(TECHNICAL_DOCS_PATH, technical_docs_data, 'application/pdf')
 ]
 
 if(DRY_RUN):
@@ -143,9 +148,7 @@ if(DRY_RUN):
         print(f"""
 
 ---------------------------------------------------
-{blob_entry.path} {blob_entry.mime}:
-        
-{blob_entry.content if (len(blob_entry.content) <= 300) else blob_entry.content[0:300]+"..."}
+{blob_entry.path} {blob_entry.mime}
 """)
 else:
     for blob_entry in blobs:
