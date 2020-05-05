@@ -72,11 +72,14 @@ There is a range of libraries in a range of languages for working with Azure Blo
 #### Automated downloading with AZCopy
 
 There are lots of files, so we suggest installing `azcopy` command line tool, which you can download [here](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10#download-azcopy). This lets you download [whole directories](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs?toc=/azure/storage/blobs/toc.json#download-the-contents-of-a-directory) or multiple files [using wildcards](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-blobs?toc=/azure/storage/blobs/toc.json#use-wildcard-characters-1) to your computer of choice. <br>
+
 For example: <br>
 1. `azcopy cp https://metdatasa.blob.core.windows.net/covid19-response/metoffice_global_daily/precip_max/global_daily_precip_max_20200101.nc .`<br>
 will download the file `global_daily_precip_max_20200101.nc` to the current directory.
+
 2. `azcopy cp 'https://metdatasa.blob.core.windows.net/covid19-response/metoffice_ukv_daily/snow_mean/*' ukv_daily_snow_mean/`<br>
 will download the contents of `/metoffice_ukv_daily/snow_mean/` to `ukv_daily_snow_mean/`.
+
 3. `azcopy cp  --recursive  --include-pattern 'us_55*.csv' https://metdatasa.blob.core.windows.net/covid19-response/regional_subset_data/us_data/ .`<br>
 will download all the US state county averaged meteorology data which match the pattern `us_55*.csv`.
 
