@@ -16,7 +16,7 @@ The following variables are available:
 
 - `t1o5m` = Air temperature at 1.5m in *K*
 - `sh` = Specific humidity at 1.5m in *kg/kg* (kg of water vapor in kg of air)
-- `sw` = Short wave radiation in *Wm<sup>-2</sup>* (surrogate for sunshine)
+- `sw` = Short wave radiation in *W m<sup>-2</sup>* (surrogate for sunshine)
 - `precip` = Precipitation flux in *kg m<sup>-2</sup> s<sup>-1</sup>* (multiply by 3600 to get *mm / hr*)
 - `rain` = Rain flux in *kg m<sup>-2</sup> s<sup>-1</sup>* (multiply by 3600 to get *mm / hr*)
 - `pmsl` = Air pressure at mean sea level in *Pa*
@@ -103,30 +103,19 @@ There is a 'directory' for each variable.<br>
 Each file in these directories has a descriptive name* as `ukv_hourly_{variable}_{YYYYMMDD}.nc`.
 
 - `regional_subset_data/`<br>
-Contains processed regional daily values for UK and USA as `.csv` files.<br>
-Files were processed by subsetting the gridded Met Office global daily files using shapefiles for each region, taking the latitude-longitude mean value for each variable in each region for each date and saving those values as a table in a `.csv` file*.
-  - `.../uk_daily_meteodata_2020jan-mar_v03.csv` <br>
-    Daily values for `t1o5m`, `sh`, `sw` and `precip` for **all** reporting regions in the UK. <br>
-    (Merging together of all files in `/uk_data/` and `/uk_data_precip`)
-  - `.../us_daily_meteodata_2020jan-mar_v03.csv`<br>
-    Daily values for `t1o5m`, `sh`, `sw` and `precip` for **all** counties in the USA. <br>
-    (Merging together of all files in `/us_data/` and `/us_data_precip`)
-  - `.../uk_data/`<br> 
-    Daily values for `t1o5m`, `sh` and `sw` for **each** reporting region in the UK. (One `.csv` file per region.)
-  - `.../uk_data_precip/`<br> 
-    Daily values for `precip` for **each** reporting region in the UK. (One `.csv` file per region.)
-  - `.../us_data/`<br>
-    Daily values for `t1o5m`, `sh` and `sw` for **each** county in the USA. (One `.csv` file per county.)
-  - `.../us_data_precip/`<br>
-    Daily values for `precip` for **each** county in the USA. (One `.csv` file per county.)
+Contains processed regional daily values for UK, USA, Italy, Brazil, Vietnam and Uganda as `.csv` files.<br>
+Processed for data 01 Jan - 31 Mar 2020, including all variables except `wind_speed` and `wind_gust`.
+Files were processed by subsetting the gridded Met Office global daily files using shapefiles for each region, taking the latitude-longitude mean and variance values for each variable in each region for each date, and saving those values as a table in a `.csv` file*.
+Each file in this directory has a descriptive name* as `{shapefile_name}_metoffice_global_daily_{start_date}-{end_date}.csv`.
 
 - `shapefiles/`<br>
-Contains shapefiles for UK, USA, Italy, Uganda and Vietnam.
+Contains shapefiles for UK, USA, Italy, Brazil, Uganda and Vietnam.
   - `.../UK/` = UK COVID-19 reporting regions
   - `.../USA/` = USA state counties
-  - `.../Italy/` =
-  - `.../Uganda/` =
-  - `.../Vietnam/` =
+  - `.../Italy/` = [GADM v3.6](https://gadm.org/download_country_v3.html) administrative level 2 for Italy
+  - `.../Brazil/` = [GADM v3.6](https://gadm.org/download_country_v3.html) administrative level 2 for Brazil
+  - `.../Uganda/` = [GADM v3.6](https://gadm.org/download_country_v3.html) administrative level 2 for Uganda
+  - `.../Vietnam/` = [GADM v3.6](https://gadm.org/download_country_v3.html) administrative level 2 for Vietnam
 
 _*Where possible, filenames are as described. However, given the short timeframes in which this data has been made available, minor variations in filename descriptions may occur. Filenames should still be accurately descriptive of the data. If you find issues with any filenames, or the data itself, please contact us on [covid19@informaticslab.co.uk](mailto:covid19@informaticslab.co.uk)_
 
