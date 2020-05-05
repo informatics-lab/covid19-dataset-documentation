@@ -14,14 +14,14 @@ Global and high resolution UK [numerical weather model output](https://www.metof
 
 The following variables are available:
 
-- `t1o5m` = Air temperature at 1.5m in *K*
-- `sh` = Specific humidity at 1.5m in *kg/kg* (kg of water vapor in kg of air)
-- `sw` = Short wave radiation in *W m<sup>-2</sup>* (surrogate for sunshine)
-- `precip` = Precipitation flux in *kg m<sup>-2</sup> s<sup>-1</sup>* (multiply by 3600 to get *mm / hr*)
-- `rain` = Rain flux in *kg m<sup>-2</sup> s<sup>-1</sup>* (multiply by 3600 to get *mm / hr*)
-- `pmsl` = Air pressure at mean sea level in *Pa*
-- `windspeed` = Wind speed in *m s<sup>-1</sup>*
-- `windgust` = Wind gust in *m s<sup>-1</sup>*
+- `t1o5m` = Air temperature at 1.5m in _**K**_
+- `sh` = Specific humidity at 1.5m in _**kg/kg**_ (kg of water vapor in kg of air)
+- `sw` = Short wave radiation in _**W m<sup>-2</sup>**_ (surrogate for sunshine)
+- `precip` = Precipitation flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `rain` = Rain flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `pmsl` = Air pressure at mean sea level in _**Pa**_
+- `windspeed` = Wind speed in _**m s<sup>-1</sup>**_
+- `windgust` = Wind gust in _**m s<sup>-1</sup>**_
 
 This data is made available as NetCDF files.
 
