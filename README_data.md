@@ -110,7 +110,7 @@ Each file in these directories has a descriptive name* as `ukv_hourly_{variable}
 
 - `regional_subset_data/`<br>
 Contains processed regional daily values for UK, USA, Italy, Brazil, Vietnam and Uganda as `.csv` files.<br>
-Processed for data 01 Jan - 31 Mar 2020, including all variables except `wind_speed` and `wind_gust`.
+Processed for data 01 Jan - 19 Apr 2020, including all variables except `wind_speed` and `wind_gust`.
 Files were processed by subsetting the gridded Met Office global daily files using shapefiles for each region, taking the latitude-longitude mean and variance values for each variable in each region for each date, and saving those values as a table in a `.csv` file*.
 Each file in this directory has a descriptive name* as `{shapefile_name}_metoffice_global_daily_{start_date}-{end_date}.csv`.
 
