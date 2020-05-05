@@ -45,7 +45,9 @@ There is some additional post processed data aggregations over COVID-19 reportin
 
 ## Data volumes, retention, update frequency and location
 
-The data will be updated approximately weekly adding the previous week. We endeavour to have the previous week (Monday - Sunday) available by the following Tuesday.
+The gridded data is updated daily for the previous day. 
+
+The CSV data is updated on request (when possiable), contact [covid19@informaticslab.co.uk](mailto:covid19@informaticslab.co.uk) if you have a need for this data to be avaliable more frequently. 
 
 As of 18/04/20 the dataset totals approximately 352G. 
 
