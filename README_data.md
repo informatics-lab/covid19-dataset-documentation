@@ -36,7 +36,10 @@ This data is made available as NetCDF files.
 
 Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day. At time of writing (22nd May 2020) the available data is from 1st Jan - 21st May 2020.
 
-For detailed information about how this data is generated and the particulars of the parameters please see the [technical reference](https://metdatasa.blob.core.windows.net/covid19-response/README_data_processing.pdf).
+For detailed information about how this data is generated and the particulars of the parameters please see the technical references:
+
+- [Meteorology](https://metdatasa.blob.core.windows.net/covid19-response/README_data_processing.pdf).
+- [Air Quality](https://metdatasa.blob.core.windows.net/covid19-response/README_data_air_quality.html).
 
 There is some additional post processed data aggregations over COVID-19 reporting regions in the UK and USA made available as CSV files. More details below.
 
