@@ -18,14 +18,17 @@ The following variables are available:
 - `sh` = Specific humidity at 1.5m in _**kg/kg**_ (kg of water vapor in kg of air)
 - `sw` = Short wave radiation in _**W m<sup>-2</sup>**_ (surrogate for sunshine)
 - `precip` = Precipitation flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
-- `rain` = Rain flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `snow` = Stratiform snowfall flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `rain` = Stratiform rainfall flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
 - `pmsl` = Air pressure at mean sea level in _**Pa**_
 - `windspeed` = Wind speed in _**m s<sup>-1</sup>**_
 - `windgust` = Wind gust in _**m s<sup>-1</sup>**_
+- `cldbase` = Cloud base altitude in _**ft**_
+- `cldfrac` = Cloud area fraction assuming maximum random overlap (_**unitless**_)
 
 This data is made available as NetCDF files.
 
-Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day. At time of writing (4th May 2020) the available data is from 1st Jan - 3rd May 2020.
+Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day. At time of writing (26th May 2020) the available data is from 1st Jan - 25th May 2020.
 
 For detailed information about how this data is generated and the particulars of the parameters please see the [technical reference](https://metdatasa.blob.core.windows.net/covid19-response/README_data_processing.pdf).
 
