@@ -17,11 +17,13 @@ The following variables are available:
 - `t1o5m` = Air temperature at 1.5m in _**K**_
 - `sh` = Specific humidity at 1.5m in _**kg/kg**_ (kg of water vapor in kg of air)
 - `sw` = Short wave radiation in _**W m<sup>-2</sup>**_ (surrogate for sunshine)
-- `precip` = Precipitation flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
-- `rain` = Rain flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `snow` = Stratiform snowfall flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `rain` = Stratiform rainfall flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
 - `pmsl` = Air pressure at mean sea level in _**Pa**_
 - `windspeed` = Wind speed in _**m s<sup>-1</sup>**_
 - `windgust` = Wind gust in _**m s<sup>-1</sup>**_
+- `cldbase` = Cloud base altitude in _**ft**_
+- `cldfrac` = Cloud area fraction assuming maximum random overlap (_**unitless**_)
 
 This data is made available as NetCDF files.
 
