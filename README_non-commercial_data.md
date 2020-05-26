@@ -27,6 +27,9 @@ This data is made available as NetCDF files.
 
 Global and UK model data updated is available from 01/04/2015 to 2019/12/13.
 
+## Missing data
+
+Data for September 19th 2019 is unavailable.
 
 ## Quick links
 
