@@ -11,146 +11,196 @@ import sys
 
 print(f"### Args: {sys.argv}")
 DRY_RUN = False if (len(sys.argv) >= 2 and sys.argv[1].strip() == '--deploy') else True
-
 print("### DRY RUN ###" if DRY_RUN else "### DEPLOY ###")
 
 
-# HTML Template
-HEAD = f"""<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Met Office Informatics Lab COVID-19 environmental data</title>
-</head>
-<body>
-"""
-FOOT = '</body></html>'
+BlobAccess = namedtuple('BlobAccess', ['account', 'container', 'credentials'])
 
 
-# Define a list of blobs to upload
-BlobEntry = namedtuple("Blob", ['path', 'content', 'mime'])
-blobs = []
+def account_details(signed_url):
+    # set up blob access
+    container = signed_url.split('/')[3].split('?')[0]
+    account = signed_url.split('/')[2]
+    credentials = signed_url.split('?', 1)[1]
+
+    return BlobAccess(account=account, container=container, credentials=credentials)
 
 
-# set up blob access
+def blob_clients(blob_access):
+    # Create the BlobServiceClient object which will be used to create a container client
+    blob_service_client = BlobServiceClient(f"https://{blob_access.account}/?{blob_access.credentials}")
+    container_client = blob_service_client.get_container_client(blob_access.container)
 
-SIGNED_URL = os.environ['SIGNED_URL']
-
-
-CONTAINER = SIGNED_URL.split('/')[3].split('?')[0]
-ACCOUNT = SIGNED_URL.split('/')[2]
-CREDS = SIGNED_URL.split('?', 1)[1]
+    return blob_service_client, container_client
 
 
-# Create the BlobServiceClient object which will be used to create a container client
-blob_service_client = BlobServiceClient(f"https://{ACCOUNT}/?{CREDS}")
-container_client = blob_service_client.get_container_client(CONTAINER)
+def build_index(blob_access):
+    blob_service_client, container_client = blob_clients(blob_access)
 
+    print("\nListing blobs...")
+    # List the blobs in the container
+    blob_list = container_client.list_blobs()
+    blobs = [blob.name for blob in blob_list]  # if blob.name[0] != '.' and blob.name.find('/.') == -1]
+    print(f"found {len(blobs)} blobs")
 
-print("\nListing blobs...")
-# List the blobs in the container
-blob_list = container_client.list_blobs()
-all_blobs = [blob.name for blob in blob_list]  # if blob.name[0] != '.' and blob.name.find('/.') == -1]
-print(f"found {len(all_blobs)} blobs")
+    # filter out 'hidden' files
+    clean_blobs = []
+    for blob in blobs:
+        if blob[0] == '.' or blob.find('/.') >= 0:
+            continue
+        clean_blobs.append(blob)
+    print(f"got {len(clean_blobs)} non hidden blobs")
 
+    # Build Index
+    base = "<NOT A BASE>"
+    html = """
+    <html>
+        <head>
+            <title>Met Office Informatics Lab COVID-19 environmental data</title>
+        </head>
+        <body>
+        <h1>Met Office Informatics Lab COVID-19 environmental data index</h1>
+        <p>This is a very simple index of the files in this container/bucket.<p>
+        <p>For downloading numerous files we suggest using <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10">AzCopy</a> or other tools rather than this page.</p>
+        <p>Please refer to the data <a href="LICENCE.txt">license</a> before use.</p>
+    """
 
-# filter out 'hidden' files
-clean_blobs = []
-for blob in all_blobs:
-    if blob[0] == '.' or blob.find('/.') >= 0:
-        continue
-    clean_blobs.append(blob)
-print(f"got {len(clean_blobs)} non hidden blobs")
+    def sorter(item):
+        return (len(item.split('/')), item)
 
+    for i, blob in enumerate(sorted(clean_blobs, key=sorter)):
+        fbase = blob.rsplit('/', 1)[0] if blob.find('/') >= 0 else ''
+        name = blob.rsplit('/', 1)[1] if blob.find('/') >= 0 else blob
 
-# Build Index
+        if not fbase == base:
+            base = fbase
 
-base = "<NOT A BASE>"
-html = """
-    <h1>Met Office Informatics Lab COVID-19 environmental data index</h1>
-    <p>This is a very simple index of the files in this container/bucket.<p>
-    <p>For information on this dataset see
-    <a href="https://medium.com/informatics-lab/met-office-and-partners-offer-data-and-compute-platform-for-covid-19-researchers-83848ac55f5f">the related blog post</a>
-    and the <a href="README.md">README.md</a>.
-    </p>
-    <p>For downloading numerous files we suggest using <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10">AzCopy</a> or other tools rather than this page.</p>
-"""
+            jsid = "base-" + base.replace('/', '--')
+            htmlstr = "" if i == 0 else "</ul>"
+            htmlstr += f"\n\n<h3>{base}/<a style='font-size:50%' href='#' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
+            htmlstr += f"<ul id='{jsid}'>"
+            html += htmlstr
 
-
-def sorter(item):
-    return (len(item.split('/')), item)
-
-
-for i, blob in enumerate(sorted(clean_blobs, key=sorter)):
-    fbase = blob.rsplit('/', 1)[0] if blob.find('/') >= 0 else ''
-    name = blob.rsplit('/', 1)[1] if blob.find('/') >= 0 else blob
-
-    if not fbase == base:
-        base = fbase
-
-#         if len(base) >0 and base.split('/')[-1][0] == '.':
-#             continue
-
-        jsid = "base-" + base.replace('/', '--')
-        htmlstr = "" if i == 0 else "</ul>"
-        htmlstr += f"\n\n<h3>{base}/<a style='font-size:50%' href='#' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
-        htmlstr += f"<ul id='{jsid}'>"
+        htmlstr = f'\t<li><a title="{name}" href="{blob}">{name}</a></li>'
         html += htmlstr
+    html += f"""</ul>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <p style="font-size:50%">Created at {datetime.datetime.now()}</p>
+    </body></html>"""
 
-#     if f.name[0].strip()[0] == "." or (fbase and fbase.split('/')[-1][0] == '.'):
-#         continue
-    htmlstr = f'\t<li><a title="{name}" href="{blob}">{name}</a></li>'
-    html += htmlstr
-html += f"""</ul>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
-<p style="font-size:50%">Created at {datetime.datetime.now()}</p>"""
-
-blobs.append(BlobEntry('index.html', HEAD+html+FOOT, 'text/html'))
+    return html
 
 
-# Convert markdown files to HTML
-for path_local in ('./README_data.md', './README_data_air_quality.md'):
-    name = os.path.splitext(os.path.basename(path_local))[0]
+def markdown_to_html(markdown_text):
+    head = """
+    <html>
+    <head>
+        <title>Met Office Informatics Lab COVID-19 environmental data</title>
+    </head>
+    <body>
+    """
+    body = markdown(markdown_text)
+    foot = "</body></html>"
+    html = (head+body+foot)
 
-    with open(path_local) as fp:
-        markdown_readme = fp.read()
-
-    # markdown_readme = blob_service_client.get_blob_client(container=COUNTAINER, blob=README_MD_PATH).download_blob().readall().decode('utf-8')
-
-    print(f'Markdown from {path_local}:\n')
-    print(markdown_readme)
-    print('\n'*3)
-
-    # Add raw markdown
-    blobs.append(BlobEntry(f'{name}.md', markdown_readme, 'text/markdown'))
-
-    # Add HTML
-    html = markdown(markdown_readme)
-    blobs.append(BlobEntry(f'{name}.html', HEAD+html+FOOT, 'text/html'))
+    return html
 
 
-# Add technical docs
-TECHNICAL_DOCS_PATH = 'README_data_processing.pdf'
-with open(TECHNICAL_DOCS_PATH, 'rb') as fp:
-    technical_docs_data = fp.read()
-blobs.append(BlobEntry(TECHNICAL_DOCS_PATH, technical_docs_data, 'application/pdf'))
+BlobEntry = namedtuple("Blob", ['path', 'content', 'mime'])
 
 
-# Upload to the blob store
-if(DRY_RUN):
-    print("*** DRY RUN ***")
-    for blob_entry in blobs:
-        print(f"""
+def upload_entries(entries, blob_access):
 
----------------------------------------------------
-{blob_entry.path} {blob_entry.mime}
-""")
-else:
-    for blob_entry in blobs:
-        print(f'upload {blob_entry.path}...')
-        blob_client = blob_service_client.get_blob_client(container=CONTAINER, blob=blob_entry.path)
-        blob_client.upload_blob(
-            blob_entry.content,
-            overwrite=True,
-            content_settings=ContentSettings(content_type=blob_entry.mime))
-        print('uploaded')
+    print(f'Container: {blob_access.container}')
+    if(DRY_RUN):
+        print("*** DRY RUN ***")
+        for blob_entry in entries:
+            print(f"""
+
+    ---------------------------------------------------
+    {blob_entry.path} {blob_entry.mime}
+    """)
+    else:
+        blob_service_client, container_client = blob_clients(blob_access)
+        for blob_entry in entries:
+            print(f'upload {blob_entry.path}...')
+            blob_client = blob_service_client.get_blob_client(container=blob_access.container, blob=blob_entry.path)
+            blob_client.upload_blob(
+                blob_entry.content,
+                overwrite=True,
+                content_settings=ContentSettings(content_type=blob_entry.mime))
+            print('uploaded')
+
+
+def deploy_open_data():
+    entries = []
+    blob_access = account_details(os.environ['SIGNED_URL'])
+
+    # Index
+    index_html = build_index(blob_access)
+    entries.append(
+        BlobEntry('index.html', index_html, 'text/html')
+    )
+
+    # LICENCE
+    with open('./open_LICENCE.txt', 'r') as fp:
+        license_txt = fp.read()
+    entries.append(BlobEntry('LICENCE.txt', license_txt, 'text/html'))
+
+    # README
+    with open('./README_data.md', 'r') as fp:
+        readme_md = fp.read()
+    readme_html = markdown_to_html(readme_md)
+    entries += [
+        BlobEntry('README_data.html', readme_html, 'text/html'),
+        BlobEntry('README_data.md', readme_md,  'text/markdown'),
+    ]
+
+    # Technical docs
+    with open('./README_data_air_quality.md', 'r') as fp:
+        readme_aq_tech_md = fp.read()
+    readme_aq_tech_html = markdown_to_html(readme_aq_tech_md)
+    entries += [
+        BlobEntry('README_data_air_quality.html', readme_aq_tech_html, 'text/html'),
+        BlobEntry('README_data_air_quality.md', readme_aq_tech_md,  'text/markdown'),
+    ]
+
+    with open('README_data_processing.pdf', 'rb') as fp:
+        tech_readme_bin = fp.read()
+    entries.append(
+        BlobEntry('README_data_processing.pdf', tech_readme_bin, 'application/pdf')
+    )
+
+    upload_entries(entries, blob_access)
+
+
+def deploy_noncommercial_data():
+    entries = []
+    blob_access = account_details(os.environ['NON_COMMERCE_SIGNED_URL'])
+
+    # Index
+    index_html = build_index(blob_access)
+    entries.append(
+        BlobEntry('index.html', index_html, 'text/html')
+    )
+
+    # LICENCE
+    with open('./noncommercial_LICENCE.txt', 'r') as fp:
+        license_txt = fp.read()
+    entries.append(BlobEntry('LICENCE.txt', license_txt, 'text/html'))
+
+    # README
+    with open('./README_non-commercial_data.md', 'r') as fp:
+        readme_md = fp.read()
+    readme_html = markdown_to_html(readme_md)
+    entries += [
+        BlobEntry('README.html', readme_html, 'text/html'),
+        BlobEntry('README.md', readme_md,  'text/markdown'),
+    ]
+
+    upload_entries(entries, blob_access)
+
+
+if __name__ == "__main__":
+    deploy_open_data()
+    deploy_noncommercial_data()
