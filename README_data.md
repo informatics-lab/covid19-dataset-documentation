@@ -4,7 +4,7 @@ This data is for COVID-19 researchers to explore relationships between COVID-19 
 
 ## License
 
-_Users are required to acknowledge the Met Office as the source of these data by including the following attribution statement in any resulting products, publications or applications: “Contains Met Office data licensed under the Open Government Licence v3.0”_
+_Users are required to acknowledge the Met Office as the source of these data by including the following attribution statement in any resulting products, publications or applications: <br>"Contains Met Office data licensed under the Open Government Licence v3.0"_
 
 This data is made available under [Open Government License](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
@@ -24,13 +24,25 @@ The following variables are available:
 - `windspeed` = Wind speed in _**m s<sup>-1</sup>**_
 - `windgust` = Wind gust in _**m s<sup>-1</sup>**_
 - `cldbase` = Cloud base altitude in _**ft**_
-- `cldfrac` = Cloud area fraction assuming maximum random overlap (_**unitless**_)
+- `cldfrac` = Cloud area fraction assuming maximum random overlap (_**unitless: 0-1**_)
+
+Output of the Met Office UK air quality model AQUM is also available. This includes the following variables:
+
+- `daqi` = Daily Air Quality Index, an integer from _**1-10**_
+- `no2` = Nitrogen dioxide concentration, in _**µg m<sup>-3</sup>**_
+- `o3` = Ozone concentration, in _**µg m<sup>-3</sup>**_
+- `so2` = Sulphur dioxide concentration, in _**µg m<sup>-3</sup>**_
+- `pm2p5` = Concentration of particulate matter less than 2.5 microns diameter, in _**µg m<sup>-3</sup>**_
+- `pm10` = Concentration of particulate matter less than 10 microns diameter, in _**µg m<sup>-3</sup>**_
 
 This data is made available as NetCDF files.
 
-Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day. At time of writing (26th May 2020) the available data is from 1st Jan - 25th May 2020.
+Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day.
 
-For detailed information about how this data is generated and the particulars of the parameters please see the [technical reference](https://metdatasa.blob.core.windows.net/covid19-response/README_data_processing.pdf).
+For detailed information about how this data is generated and the particulars of the parameters please see the technical references:
+
+- [Meteorology](https://metdatasa.blob.core.windows.net/covid19-response/README_data_processing.pdf).
+- [Air Quality](https://metdatasa.blob.core.windows.net/covid19-response/README_data_air_quality.html).
 
 There is some additional post processed data aggregations over COVID-19 reporting regions in the UK and USA made available as CSV files. More details below.
 
@@ -50,7 +62,7 @@ There is some additional post processed data aggregations over COVID-19 reportin
 
 The gridded data is updated daily for the previous day. 
 
-The CSV data is updated on request (when possiable), contact [covid19@informaticslab.co.uk](mailto:covid19@informaticslab.co.uk) if you have a need for this data to be avaliable more frequently. 
+The CSV data is updated on request (when possible), contact [covid19@informaticslab.co.uk](mailto:covid19@informaticslab.co.uk) if you have a need for this data to be avaliable more frequently. 
 
 As of 18/04/20 the dataset totals approximately 352G. 
 
@@ -101,7 +113,7 @@ Each file in these directories has a descriptive name* as `global_daily_{variabl
 - `metoffice_global_hourly/`<br>
 Contains the Met Office hourly global gridded data files.<br>
 There is a 'directory' for each variable.<br>
-Each file in these directories has a descriptive name* as `global_hourly_{variable}_global_{YYYYMMDD}.nc`.
+Each file in these directories has a descriptive name* as `global_hourly_{variable}_{YYYYMMDD}.nc`.
 
 - `metoffice_ukv_daily/`<br>
 Contains the Met Office daily UKV gridded data files.<br>
@@ -112,6 +124,16 @@ Each file in these directories has a descriptive name* as `ukv_daily_{variable}_
 Contains the Met Office hourly UKV gridded data files.<br>
 There is a 'directory' for each variable.<br>
 Each file in these directories has a descriptive name* as `ukv_hourly_{variable}_{YYYYMMDD}.nc`.
+
+- `metoffice_aqum_daily/`<br>
+Contains the Met Office daily AQUM gridded data files.<br>
+There is a 'directory' for each variable.<br>
+Each file in these directories has a descriptive name* as `aqum_daily_{variable}_{statistic}_{YYYYMMDD}.nc`.
+
+- `metoffice_aqum_hourly/`<br>
+Contains the Met Office hourly AQUM gridded data files.<br>
+There is a 'directory' for each variable.<br>
+Each file in these directories has a descriptive name* as `aqum_hourly_{variable}_{YYYYMMDD}.nc`.
 
 - `regional_subset_data/`<br>
 Contains processed regional daily values for UK, USA, Italy, Brazil, Vietnam and Uganda as `.csv` files.<br>
