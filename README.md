@@ -1,5 +1,6 @@
 
-[![Build Status](https://travis-ci.com/informatics-lab/-covid19-dataset-documentation.svg?branch=master)](https://travis-ci.com/informatics-lab/covid19-dataset-documentation)
+[![Build Status](https://travis-ci.com/informatics-lab/covid19-dataset-documentation.svg?branch=master)](https://travis-ci.com/informatics-lab/covid19-dataset-documentation)
+
 
 # Documentation for the Met Office COVID-19 response datasets
 
