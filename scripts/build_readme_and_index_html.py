@@ -16,7 +16,6 @@ print("### DRY RUN ###" if DRY_RUN else "### DEPLOY ###")
 
 BlobAccess = namedtuple('BlobAccess', ['account', 'container', 'credentials'])
 
-
 def account_details(signed_url):
     # set up blob access
     container = signed_url.split('/')[3].split('?')[0]
@@ -25,20 +24,12 @@ def account_details(signed_url):
 
     return BlobAccess(account=account, container=container, credentials=credentials)
 
-
 def blob_clients(blob_access):
     # Create the BlobServiceClient object which will be used to create a container client
     blob_service_client = BlobServiceClient(f"https://{blob_access.account}/?{blob_access.credentials}")
     container_client = blob_service_client.get_container_client(blob_access.container)
 
     return blob_service_client, container_client
-
-
-# # set up blob access
-# SIGNED_URL = os.environ['SIGNED_URL']
-# CONTAINER = SIGNED_URL.split('/')[3].split('?')[0]
-# ACCOUNT = SIGNED_URL.split('/')[2]
-# CREDS = SIGNED_URL.split('?', 1)[1]
 
 
 def build_index(blob_access):
@@ -164,6 +155,14 @@ def deploy_open_data():
     ]
 
     # Technical docs
+    with open('./README_data_air_quality.md', 'r') as fp:
+        readme_aq_tech_md = fp.read()
+    readme_aq_tech_html = markdown_to_html(readme_aq_tech_md)
+    entries += [
+        BlobEntry('README_data_air_quality.html', readme_aq_tech_html, 'text/html'),
+        BlobEntry('README_data_air_quality.md', readme_aq_tech_md,  'text/markdown'),
+    ]
+
     with open('README_data_processing.pdf', 'rb') as fp:
         tech_readme_bin = fp.read()
     entries.append(
