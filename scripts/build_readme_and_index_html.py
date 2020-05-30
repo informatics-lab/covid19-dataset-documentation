@@ -16,7 +16,6 @@ print("### DRY RUN ###" if DRY_RUN else "### DEPLOY ###")
 
 BlobAccess = namedtuple('BlobAccess', ['account', 'container', 'credentials'])
 
-
 def account_details(signed_url):
     # set up blob access
     container = signed_url.split('/')[3].split('?')[0]
@@ -24,7 +23,6 @@ def account_details(signed_url):
     credentials = signed_url.split('?', 1)[1]
 
     return BlobAccess(account=account, container=container, credentials=credentials)
-
 
 def blob_clients(blob_access):
     # Create the BlobServiceClient object which will be used to create a container client

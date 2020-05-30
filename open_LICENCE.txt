@@ -1,0 +1,12 @@
+Data supplied by the Met Office
+
+(c) Crown Copyright, 2020. 
+
+This data is released under the open government license version 3.0. 
+
+Users are required to acknowledge the Met Office as the source of these data by including the following attribution statement in any resulting products, publications or applications: 
+“Contains Met Office data licensed under the Open Government Licence v3.0”
+
+For licence details details see:
+
+http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
