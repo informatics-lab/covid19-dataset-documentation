@@ -35,15 +35,6 @@ Output of the Met Office UK air quality model AQUM is also available. This inclu
 - `pm2p5` = Concentration of particulate matter less than 2.5 microns diameter, in _**µg m<sup>-3</sup>**_
 - `pm10` = Concentration of particulate matter less than 10 microns diameter, in _**µg m<sup>-3</sup>**_
 
-Output of the Met Office UK air quality model AQUM is also available. This includes the following variables:
-
-- `daqi` = Daily Air Quality Index, an integer from 1-10
-- `no2` = Nitrogen dioxide concentration, in _**µg m<sup>-3</sup>**_
-- `o3` = Ozone concentration, in _**µg m<sup>-3</sup>**_
-- `so2` = Sulphur dioxide concentration, in _**µg m<sup>-3</sup>**_
-- `pm2p5` = Concentration of particulate matter less than 2.5 microns diameter, in _**µg m<sup>-3</sup>**_
-- `pm10` = Concentration of particulate matter less than 10 microns diameter, in _**µg m<sup>-3</sup>**_
-
 This data is made available as NetCDF files.
 
 Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day.
