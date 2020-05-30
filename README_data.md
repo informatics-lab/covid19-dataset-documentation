@@ -4,7 +4,7 @@ This data is for COVID-19 researchers to explore relationships between COVID-19 
 
 ## License
 
-_Users are required to acknowledge the Met Office as the source of these data by including the following attribution statement in any resulting products, publications or applications: “Contains Met Office data licensed under the Open Government Licence v3.0”_
+_Users are required to acknowledge the Met Office as the source of these data by including the following attribution statement in any resulting products, publications or applications: <br>"Contains Met Office data licensed under the Open Government Licence v3.0"_
 
 This data is made available under [Open Government License](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
 
@@ -18,14 +18,17 @@ The following variables are available:
 - `sh` = Specific humidity at 1.5m in _**kg/kg**_ (kg of water vapor in kg of air)
 - `sw` = Short wave radiation in _**W m<sup>-2</sup>**_ (surrogate for sunshine)
 - `precip` = Precipitation flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
-- `rain` = Rain flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `snow` = Stratiform snowfall flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
+- `rain` = Stratiform rainfall flux in _**kg m<sup>-2</sup> s<sup>-1</sup>**_ (multiply by 3600 to get _**mm / hr**_)
 - `pmsl` = Air pressure at mean sea level in _**Pa**_
 - `windspeed` = Wind speed in _**m s<sup>-1</sup>**_
 - `windgust` = Wind gust in _**m s<sup>-1</sup>**_
+- `cldbase` = Cloud base altitude in _**ft**_
+- `cldfrac` = Cloud area fraction assuming maximum random overlap (_**unitless: 0-1**_)
 
 Output of the Met Office UK air quality model AQUM is also available. This includes the following variables:
 
-- `daqi` = Daily Air Quality Index, an integer from 1-10
+- `daqi` = Daily Air Quality Index, an integer from _**1-10**_
 - `no2` = Nitrogen dioxide concentration, in _**µg m<sup>-3</sup>**_
 - `o3` = Ozone concentration, in _**µg m<sup>-3</sup>**_
 - `so2` = Sulphur dioxide concentration, in _**µg m<sup>-3</sup>**_
@@ -34,7 +37,7 @@ Output of the Met Office UK air quality model AQUM is also available. This inclu
 
 This data is made available as NetCDF files.
 
-Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day. At time of writing (22nd May 2020) the available data is from 1st Jan - 21st May 2020.
+Global and UK model data updated is available from 01 Jan 2020 onwards. The dataset is updated daily for the previous day.
 
 For detailed information about how this data is generated and the particulars of the parameters please see the technical references:
 
