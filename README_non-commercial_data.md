@@ -2,6 +2,10 @@
 
 This data is for COVID-19 researchers to explore relationships between COVID-19 and environmental factors. It is offered under a non-commercial license.
 
+## Stay up to date
+
+Stay up to date with new datasets, corrections, redactions and useful or important information by subscribing to our [Google Groups mailing list](https://groups.google.com/forum/#!forum/met-office-covid-19-data-and-platform-updates/join)
+
 ## License
 
 _Users are required to acknowledge the Met Office as the source of these data by including the following attribution statement in any resulting products, publications or applications: “Contains Met Office data licensed under the Non-Commercial government license version v2.0”_
