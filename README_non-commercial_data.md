@@ -46,6 +46,9 @@ Data for September 19th 2019 is unavailable.
 
 The data is hosted on Microsoft Azure through their AI for Earth initiative. You can access the data in numerous ways, such as:
 
+#### Index page
+
+There data in this container is listed on the [index page](index.html). You can see what is avaliable and download files one at at time from this page. It is *not* recomended for accessing any significant volume of data.
 
 #### Azure Blob libraries
 
