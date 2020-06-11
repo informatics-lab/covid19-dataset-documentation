@@ -59,7 +59,7 @@ def build_index(blob_access):
         <body>
         <h1>Met Office Informatics Lab COVID-19 environmental data index</h1>
         <p>This is a very simple index of the files in this container/bucket.<p>
-        <p>Stay up to date with new data sets, corrections, redactions and useful or important information by subscribing to our 
+        <p>Stay up to date with new datasets, corrections, redactions and useful or important information by subscribing to our 
             <a href="https://groups.google.com/forum/#!forum/met-office-covid-19-data-and-platform-updates/join" >Google Groups mailing list</a></p>
         <p>For downloading numerous files we suggest using <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10">AzCopy</a> or other tools rather than this page.</p>
         <p>Please refer to the data <a href="LICENCE.txt">license</a> before use.</p>
