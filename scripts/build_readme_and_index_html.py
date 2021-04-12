@@ -78,7 +78,7 @@ def build_index(blob_access):
             jsid = "base-" + base.replace('/', '--')
             htmlstr = "" if i == 0 else "</ul>"
             htmlstr += f"\n\n<h3>{base}/<a style='font-size:50%' href='#' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
-            htmlstr += f"<ul id='{jsid}' style='display: none;'>"
+            htmlstr += f"<ul id='{jsid}'>" if jsid == "base-" else f"<ul id='{jsid}' style='display: none;'>"
             html += htmlstr
 
         htmlstr = f'\t<li><a title="{name}" href="{blob}">{name}</a></li>'
