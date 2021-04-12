@@ -74,10 +74,11 @@ def build_index(blob_access):
 
         if not fbase == base:
             base = fbase
-
-            jsid = "base-" + base.replace('/', '--')
+            
+            baseid = base.replace('/', '--')
+            jsid = "base-" + baseid
             htmlstr = "" if i == 0 else "</ul>"
-            htmlstr += f"\n\n<h3>{base}/<a style='font-size:50%' href='#{base}' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
+            htmlstr += f"\n\n<h3 id='{baseid}'>{base}/<a style='font-size:50%' href='#' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
             htmlstr += f"<ul id='{jsid}'>" if jsid == "base-" else f"<ul id='{jsid}' style='display: none;'>"
             html += htmlstr
 
