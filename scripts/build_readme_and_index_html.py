@@ -78,7 +78,7 @@ def build_index(blob_access):
             baseid = base.replace('/', '--')
             jsid = "base-" + baseid
             htmlstr = "" if i == 0 else "</ul>"
-            htmlstr += f"\n\n<h3 id='{baseid}'>{base}/<a style='font-size:50%' href='#' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
+            htmlstr += f"\n\n<h3 id='{baseid}'>{base}/<a style='font-size:50%' href='#{baseid}' onclick='$(\"#{jsid}\").toggle();false'>[show/hide]</a></h3>\n"
             htmlstr += f"<ul id='{jsid}'>" if jsid == "base-" else f"<ul id='{jsid}' style='display: none;'>"
             html += htmlstr
 
