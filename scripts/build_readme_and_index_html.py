@@ -204,5 +204,4 @@ def deploy_noncommercial_data():
 
 if __name__ == "__main__":
     deploy_open_data()
-#     Temporarily pause non-commercial doc generation 
-#     deploy_noncommercial_data()
+    deploy_noncommercial_data()
